@@ -1,0 +1,40 @@
+public class Arrays {
+    public static void mergeArrays(int[] X, int[] Y, int m, int n) {
+        int i = m - 1; 
+        int j = n - 1; 
+        int merged = m + n - 1; 
+        
+        
+        while (i >= 0 && j >= 0) {
+            if (X[i] > Y[j]) {
+                X[merged] = X[i];
+                i--;
+            } else {
+                X[merged] = Y[j];
+                j--;
+            }
+            merged--;
+        }
+        
+        
+        while (j >= 0) {
+            X[merged] = Y[j];
+            j--;
+            merged--;
+        }
+    }
+    
+    public static void main(String[] args) {
+        int[] X = {1, 4, 7, 8, 10, 23,54,89,0,0,0,0,0,0,0}; 
+        int[] Y = {2, 3, 5, 9,10,15,25}; 
+        int m = 8; 
+        int n = 7; 
+        
+        mergeArrays(X, Y, m, n);
+        
+        
+        for (int element : X) {
+            System.out.print(element + " ");
+        }
+    }
+}

@@ -1,0 +1,49 @@
+public class Amar {
+    public static int amar(int[] a, int[] b) {
+        int m = a.length;
+        int n = b.length;
+
+        int i = 0, j = 0;
+        int result = 0, sum1 = 0, sum2 = 0;
+
+        while (i < m && j < n) {
+            if (a[i] < b[j]) {
+                sum1 += a[i];
+                i++;
+            } else if (a[i] > b[j]) {
+                sum2 += b[j];
+                j++;
+            } else {
+                result += Math.max(sum1, sum2) + a[i];
+                sum1 = 0;
+                sum2 = 0;
+
+                while (i < m && j < n && a[i] == b[j]) {
+                    result += a[i];
+                    i++;
+                    j++;
+                }
+            }
+        }
+
+        while (i < m) {
+            sum1 += a[i];
+            i++;
+        }
+
+        while (j < n) {
+            sum2 += b[j];
+            j++;
+        }
+
+        result += Math.max(sum1, sum2);
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int[] a = {2, 3, 7, 10, 12,18,34,67};
+        int[] b = {1, 5, 7, 8,45,65,34};
+        System.out.println("Maximum sum path: " + amar(a, b)); 
+    }
+}
